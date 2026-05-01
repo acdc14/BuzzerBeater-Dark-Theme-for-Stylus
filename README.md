@@ -2,8 +2,6 @@
 
 Dark mode theme pack for the website **BuzzerBeater** using the Stylus browser extension.
 
-This project modernizes the visual appearance of the site while keeping compatibility with the original legacy structure.
-
 ---
 
 # Features
