@@ -1,0 +1,576 @@
+/* ==UserStyle==
+@name           buzzerbeater.com
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@description    A simple template to rewrite BuzzerBeater styles to support Dark Themes
+@author         github.com/acdc14
+==/UserStyle== */
+
+@-moz-document domain("buzzerbeater.com") {
+
+    html:has(link[href*="bb_blue"]) {
+        /* fondo global */
+        --bg: #121212;
+        /* cards, paneles */
+        --surface: #1e1e1e;
+        --surface-2: #252525;
+        /* headers, barras */
+        --primary: #2f3a7a;
+        /* texto principal */
+        --text: #e0e0e0;
+        /* links, interacción */
+        --accent: #8ab4f8;
+        /* hover: links / interacción */
+        --accent-hover: #a8c7ff;
+        /* separadores */
+        --border: #2a2a2a;
+        /* texto secundario */
+        --muted: #a0a0a0;
+    }
+
+    html:has(link[href*="bb_grey"]) {
+        /* fondo global */
+        --bg: #121212;
+        /* cards, paneles */
+        --surface: #202020;
+        --surface-2: #282828;
+        /* headers, barras */
+        --primary: #3a3a3a;
+        /* texto principal */
+        --text: #e6e6e6;
+        /* links, interacción */
+        --accent: #c0c0c0;
+        /* hover: links / interacción */
+        --accent-hover: #e0e0e0;
+        /* separadores */
+        --border: #2a2a2a;
+        /* texto secundario */
+        --muted: #a0a0a0;
+    }
+
+    :root {
+        --buzzer-orange: #ffa631;
+        --tag-info-bg: #24384a;
+        --tag-info-text: #9ecfff;
+
+        /* colores de texto por defecto */
+        --green-text: #7bd389;
+        --red-text: #e06c75;
+
+        /* Actualización diaria */
+        --event-daily-bg: #3a2f1a;
+        --event-daily-text: #f2e6d0;
+
+        /* Actualización económica */
+        --event-economy-bg: #1f3b42;
+        --event-economy-text: #d6f3f8;
+
+        /* Partido de selección */
+        --event-national-bg: #3a2436;
+        --event-national-text: #f3d7ee;
+
+        /* Copa B3/BBM */
+        --event-b3-bbm-bg: #3a3a22;
+        --event-b3-bbm-text: #f5f5d6;
+
+        /* Copa local */
+        --event-cup-bg: #1f2f3a;
+        --event-cup-text: #d6eaf7;
+
+        /* comunicados */
+        --news-warning-bg: #3a3a1a;
+        --news-warning-text: #f6f1b5;
+        --news-info-bg: #1c3342;
+        --news-info-text: #cfeeff;
+
+        /* colores tabla de liga */
+        --conf-west-header: #1f2f66;
+        --conf-west-top4: #2a2f4f;
+        --conf-east-header: #5a1f24;
+        --conf-east-top4: #4a2a2a;
+
+        /* enfasis para lista de partidos */
+        --match-friendly: #2b2b2b;
+        --match-tv: #3a2436;
+        --match-cup-b3: #3a3a22;
+        --match-cup-bbm: #3a3a22;
+        --match-cup-local: #1f2f3a;
+        --match-bots: #1b3a36;
+        --match-private: #243a2a;
+
+        /* colores de marcadores */
+        --score-text: var(--text);
+        --score-win: var(--green-text);
+        --score-loss: var(--red-text);
+
+        /* enfasis general en filas de tablas */
+        --table-highlight-bg: #3b3224;
+        --table-highlight-text: #f3dfbf;
+    }
+
+    /*
+     * GENERAL
+     */
+
+    body,
+    #backing {
+        background: var(--bg);
+    }
+
+    #page {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-content: stretch;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    #header {
+        height: 1rem;
+        width: 100%;
+        position: relative;
+        background: var(--buzzer-orange);
+        margin-bottom: 0.5rem;
+    }
+
+    hr {
+        border-color: var(--border);
+    }
+
+    /* headers cards generales */
+    #titlebar,
+    .boxheader,
+    #subcontent .boxheader {
+        background: var(--surface-2);
+        color: var(--text);
+    }
+
+    .titleblcorner,
+    .titlebrcorner,
+    .titlefooter {
+        display: none;
+    }
+
+    /* sustituir textos rojos */
+    span[style*="color:Red"],
+    span[style*="color: Red"],
+    span[style*="color:red"],
+    span[style*="color: red"],
+    a#matchBoxscoreLink[style*="color:Red"],
+    a#matchBoxscoreLink[style*="color: Red"],
+    a#matchBoxscoreLink[style*="color:red"],
+    a#matchBoxscoreLink[style*="color: red"],
+    #playercount {
+        color: var(--red-text) !important;
+    }
+
+    /* sustituir textos verdes */
+    span[style*="color:Green"],
+    span[style*="color: Green"],
+    span[style*="color:green"],
+    span[style*="color: green"],
+    a#matchBoxscoreLink[style*="color:Black"],
+    a#matchBoxscoreLink[style*="color: Black"],
+    a#matchBoxscoreLink[style*="color:black"],
+    a#matchBoxscoreLink[style*="color: black"] {
+        color: var(--green-text) !important;
+    }
+
+    /* contenido cards generales */
+    .boxcontent,
+    #subcontent .boxcontent {
+        background: var(--surface);
+        color: var(--text);
+        border-color: var(--border);
+    }
+
+    /* links */
+    .boxcontent a {
+        color: var(--accent);
+    }
+
+    .boxcontent a:hover {
+        color: var(--accent-hover) !important;
+    }
+
+    /* menus desplegables */
+    ul#iconSet {
+        border: 1px solid;
+        border-color: var(--accent);
+    }
+
+    #iconSet {
+        background: var(--surface-2);
+    }
+
+    /* calendario */
+    .tc_dayno {
+        background: var(--surface);
+        border: none;
+    }
+
+    .tc_dayWrapper,
+    .topBorderedEvent {
+        border-color: var(--border);
+    }
+
+    /* fondo actualizacion diaria */
+    .backColor15 {
+        background-color: var(--event-daily-bg);
+        color: var(--event-daily-text);
+    }
+
+    /* fondo actualizacion economica */
+    .backColor7 {
+        background-color: var(--event-economy-bg);
+        color: var(--event-economy-text);
+    }
+
+    /* fondo partido NT */
+    .backColor11 {
+        background-color: var(--event-national-bg);
+        color: var(--event-national-text);
+    }
+
+    /* fondo partido B3/BBM */
+    .backColor17,
+    .backColor13,
+    .backColor18,
+    .backColor19 {
+        background-color: var(--event-b3-bbm-bg);
+        color: var(--event-b3-bbm-text);
+    }
+
+    /* fondo partido copa local */
+    .backColor2 {
+        background-color: var(--event-cup-bg);
+        color: var(--event-cup-text);
+    }
+
+    /* fondo partido liga */
+    .backColor1 {
+        background-color: inherit;
+    }
+
+    input,
+    select,
+    textarea {
+        border-style: solid;
+        border-width: 1px;
+        width: 130px;
+        padding: 0;
+        padding-left: 2px;
+        font-size: 11px;
+        font-family: Tahoma;
+
+        background: var(--surface) !important;
+        color: var(--text) !important;
+        border-color: var(--primary) !important;
+    }
+
+    select option {
+        color: var(--text) !important;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+        border-color: var(--accent) !important;
+        outline: none;
+    }
+
+    .headline {
+        color: var(--accent);
+    }
+
+    /* tablas */
+    tr {
+        background: var(--surface) !important;
+        color: var(--text);
+    }
+
+    tr.tableheader,
+    #cphContent_playerStats .tableHeader,
+    .tableheader {
+        background: var(--primary) !important;
+        color: var(--accent);
+    }
+
+    #titlebar tr,
+    #titlebar td {
+        background: var(--surface-2) !important;
+    }
+
+    #HeaderBox2 tr>* {
+        background: var(--surface) !important;
+    }
+
+
+    /*
+     * NOTICIAS
+     */
+
+    /* titulo versiones */
+    .newsheader {
+        background: var(--surface-2);
+        color: var(--text);
+    }
+
+    /* contenido */
+    #MOTD .boxcontent {
+        background-color: var(--news-info-bg) !important;
+        color: var(--news-info-text);
+    }
+
+    /* textos enfatizados */
+    #MOTD span {
+        color: var(--news-wearning-text) !important;
+    }
+
+
+    /*
+     * ALINEACIONES
+     */
+
+    /* estilos originales de cancha */
+    .tacticsboard {
+        tr {
+            background: none !important;
+        }
+    }
+
+
+    /*
+     * EQUIPO
+     */
+
+    #logobox {
+        background: var(--surface);
+        color: var(--text);
+    }
+
+    #logobox>* {
+        background: var(--surface) !important;
+    }
+
+    /* imagen equipos */
+    #cphContent_Logo_divWrapper,
+    #cphContent_Logo2_divWrapper {
+        border: none !important;
+    }
+
+    #cphContent_lblInviteStatus {
+        color: var(--text) !important;
+    }
+
+
+    /*
+     * LIGA GENERAL
+     */
+
+    /* colores tabla por conferencia */
+    .leagueStandings {
+
+        /* oeste */
+        .conf1header {
+            background: var(--conf-west-header) !important;
+        }
+
+        .conf1slotRow {
+            background: var(--conf-west-top4) !important;
+        }
+
+        /* oeste */
+        .conf2header {
+            background: var(--conf-east-header) !important;
+        }
+
+        .conf2slotRow {
+            background: var(--conf-east-top4) !important;
+        }
+    }
+
+    /* fondo en posicion de equipo en lista de partidos segun conferencia */
+    .matchListings {
+
+        /* oeste */
+        .ml_conf1 .ml_seed {
+            background: var(--conf-west-header) !important;
+        }
+
+        /* oeste */
+        .ml_conf2 .ml_seed {
+            background: var(--conf-east-header) !important;
+        }
+    }
+
+    /* color seccion playoffs */
+    #playoffsBox {
+        tr {
+            color: var(--accent);
+        }
+    }
+
+
+    /*
+     * LISTA CALENDARIO
+     */
+    table.schedule {
+        .tableHeader {
+            background: var(--primary) !important;
+        }
+
+        /* amistoso */
+        .scgame {
+            background: var(--match-friendly) !important;
+        }
+
+        /* pachanga */
+        .pugame {
+            background: var(--match-bots) !important;
+        }
+
+        /* liga privada */
+        .plgame {
+            background: var(--match-private) !important;
+        }
+
+        /* televisado */
+        .tvgame {
+            background: var(--match-tv) !important;
+        }
+
+        .cup {
+            background: var(--match-cup-local) !important;
+        }
+
+        /* bbm */
+        .bbmgame {
+            background: var(--match-cup-bbm) !important;
+        }
+
+        /* b3 */
+        .b3game {
+            background: var(--match-cup-b3) !important;
+        }
+
+        /* colores en resultados */
+        a#matchReplayLink {
+            color: var(--accent) !important;
+        }
+    }
+
+
+    /*
+     * ECONOMIA
+     */
+
+    /* color de texto y fondo */
+    #breakdown .playoff table tr td,
+    #ContentBoxMerch .playoff table tr td {
+        background: var(--table-highlight-bg) !important;
+        color: var(--table-highlight-text) !important;
+    }
+
+    /* fondos de enfasis */
+    #cphContent_pnlLastTwoWeeks,
+    #weekly,
+    #leagueaverage,
+    #breakdown,
+    #ContentBoxMerch,
+    #weekly {
+        .playoff {
+            background: var(--table-highlight-bg) !important;
+            color: var(--table-highlight-text);
+        }
+    }
+
+    
+    /*
+     * TRANSFERENCIAS
+     */
+    
+    /* anuncios de ventas */
+    #TransferAds tr td {
+        background: var(--surface) !important;
+    }
+    
+    /** lista */
+    #playerbox.oldbox {
+        td {
+            background: var(--surface) !important;
+        }
+        
+        /* etiqueta rookie */
+        span[id^="cphContent_rptListedPlayers_lblDraftee_"] {
+            background: var(--tag-info-bg);
+            color: var(--tag-info-text);
+        }
+        
+        /* buzzer script: sueldo calculado */
+        tr > td > span:nth-child(7),
+        tr > td > span:nth-child(8){
+            background: var(--surface) !important;
+            color: var(--green-text) !important;
+        }
+        /* buzzer script: potencial */
+        tr > td > span:nth-child(12),
+        tr > td > span:nth-child(13){
+            background: var(--surface) !important;
+            color: var(--red-text) !important;
+        }
+    }
+
+    /*
+     * LISTA JUGADORES
+     */
+    #playerbox.widebox {
+        td {
+            background: var(--surface) !important;
+        }
+
+        /* buzzer script: sueldo calculado */
+        span:nth-child(1),
+        /* solo en perfil */
+        #playerPersonalInfo>span:nth-child(4),
+        /* lista seleccionados */
+        td > span:nth-child(2)
+        {
+            background: var(--surface) !important;
+            color: var(--green-text) !important;
+        }
+        /* buzzer script: potencial */
+        span:nth-child(11),
+        /* solo perfil */
+        #playerPersonalInfo>span:nth-child(14),
+        /* lista seleccionados */
+        td > span:nth-child(9)
+        {
+            background: var(--surface) !important;
+            color: var(--red-text) !important;
+        }
+        
+        /* etiqueta rookie */
+        .drafteeLabel {
+            background: var(--tag-info-bg);
+            color: var(--tag-info-text);
+        }
+    }
+
+
+    /*
+     * CUERPO TECNICO
+     */
+    table#essentialTable,
+    table#essentialTable tr {
+        background: var(--surface-2) !important;
+        border: none;
+
+        strong {
+            color: var(--accent) !important;
+        }
+    }
+}
